@@ -1,0 +1,33 @@
+extends ../templates/layout
+block head
+    link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
+    script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
+    script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
+    script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
+block content
+    div.container.mt-4
+        h3 Listado de autores
+        table.table.table-bordered.table-hover
+            thead.thead-dark 
+                tr
+                    th id
+                    th nombre
+                    th paisOrigen
+                    th borrar 
+                    th editar
+                    th Maestro Detalle 
+            tbody 
+                each autor in autores
+                    tr 
+                        td=autor.id
+                        td=autor.nombre                        
+                        td=autor.paisOrigen
+                        td 
+                            a.btn.btn-danger.btn-sm(href=`/autor/del/${autor.id}`) Borrar 
+                        td 
+                            a.btn.btn-warning.btn-sm(href=`/autor/edit/${autor.id}`) Editar
+                        td 
+                            a.btn.btn-info.btn-sm(href=`/autor/autoresPorPais/${autor.paisOrigen}`) Autor por País
+        p 
+            a.btn.btn-primary(href="/autor/add") Añadir un autor nuevo
+
